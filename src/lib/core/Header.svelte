@@ -1,5 +1,4 @@
 <script>
-	import { options } from './../../../.svelte-kit/generated/server/internal.js';
 	import Wrapper from "./Wrapper.svelte";
 
     const menu = [

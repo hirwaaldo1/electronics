@@ -1,6 +1,6 @@
 <script>
-	import Header from "$lib/core/Header.svelte";
-	import NavBar from "$lib/core/NavBar.svelte";
+	import NavBar from './../lib/core/NavBar.svelte';
+	import Header from './../lib/core/Header.svelte';
   import "../app.css";
   const meta_description = `top selling smartphone and accessories, laptops, desktops, and other electronics at affordable prices.`;
 
