@@ -23,7 +23,7 @@
             </div>
             <div class="grid sm:grid-cols-2  gap-8 mt-4">
                 <div class="rounded-xl px-6 py-6 bg-white flex gap-10 items-center">
-                    <div class="w-[180px] rounded-xl bg-[#F7F7F7] flex items-center justify-center h-full">
+                    <div class="w-[180px] rounded-xl min-[522px]:flex hidden bg-[#F7F7F7] items-center justify-center h-full">
                         <div class="w-[94.94px] h-full">
                             <img src="/image3.3.png" alt="deal" class=" object-contain w-full h-full" />
                         </div>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl px-6 py-6 bg-white flex gap-10 items-center">
-                    <div class="w-[180px] rounded-xl bg-[#F7F7F7] flex items-center justify-center h-full">
+                    <div class="w-[180px] rounded-xl min-[522px]:flex hidden bg-[#F7F7F7] flex items-center justify-center h-full">
                         <div class="w-[94.94px] h-full">
                             <img src="/image3.3.png" alt="deal" class=" object-contain w-full h-full" />
                         </div>
