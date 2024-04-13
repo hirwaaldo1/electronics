@@ -1,6 +1,6 @@
 <script>
-	import ProductCard from './../../lib/shared/ProductCard.svelte';
 	import Wrapper from "$lib/core/Wrapper.svelte";
+	import ProductCard from "$lib/shared/ProductCard.svelte";
 
     const menu = [
         {
