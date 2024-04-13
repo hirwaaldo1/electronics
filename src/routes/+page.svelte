@@ -1,5 +1,6 @@
 <script>
-	import Hero from "$lib/sections/homepage/Hero.svelte";
+	import Categories from "$lib/sections/homepage/Categories.svelte";
+import Hero from "$lib/sections/homepage/Hero.svelte";
 	import HotDeals from "$lib/sections/homepage/HotDeals.svelte";
 	import TopSellers from "$lib/sections/homepage/TopSellers.svelte";
 	import TrendingProducts from "$lib/sections/homepage/TrendingProducts.svelte";
@@ -10,4 +11,5 @@
     <HotDeals/>
     <TopSellers />
     <TrendingProducts />
+    <Categories />
 </div>

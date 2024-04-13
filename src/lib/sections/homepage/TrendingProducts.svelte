@@ -18,7 +18,7 @@
                 <ProductCard />
             {/each}
         </div>
-        <div class="bg-[#00325F] flex-wrap gap-5 rounded-md flex items-center justify-between my-10 px-10 py-6">
+        <div class="bg-[#00325F] flex-wrap gap-5 rounded-md flex items-center justify-between mt-10 px-10 py-6">
             <div class="flex items-center gap-4">
                 <div>
                     <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
