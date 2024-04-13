@@ -2,6 +2,7 @@
 	import NavBar from './../lib/core/NavBar.svelte';
 	import Header from './../lib/core/Header.svelte';
   import "../app.css";
+	import Footer from '$lib/core/Footer.svelte';
   const meta_description = `top selling smartphone and accessories, laptops, desktops, and other electronics at affordable prices.`;
 
   </script>  
@@ -14,4 +15,5 @@
   <NavBar />
   <Header />
   <slot />
+  <Footer />
 </main>

@@ -6,7 +6,7 @@
 <div class="mt-10">
     <Wrapper>
         <div class="flex items-center justify-between mb-6">
-            <h1 class="text-black font-medium text-lg">Trending Products</h1>
+            <h1 class="text-black font-medium text-lg sm:block hidden">Trending Products</h1>
             <div class="flex items-center gap-8">
                 {#each ["all","new arrivals","best sellers","most popular"] as item, i }
                     <button class="font-medium capitalize {i === 0 && "text-[#24ABE3]"}">{item}</button>
