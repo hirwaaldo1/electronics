@@ -1,6 +1,6 @@
 <script lang="ts">
 	import FRW from './../core/FRW.svelte';
-
+    export let status: "normal" | "hot" | "tracking"| "cancle" | 'paid' | undefined = 'normal';
 </script>
 
 <div class="flex flex-col gap-2">
@@ -8,9 +8,28 @@
         <div class="w-[125px] h-full">
             <img src="/image3.3.png" alt="deal" class=" object-contain w-full h-full" />
         </div>
-        <div class="bg-[#FF8888] text-white font-semibold rounded-xl capitalize text-sm absolute right-2.5 top-4 px-4 py-2">
+        {#if status === "hot"}
+        <div class="bg-[#FF8888] text-white rounded-xl capitalize text-xs absolute right-2.5 top-4 px-3 py-1.5 font-medium">
             hot
         </div>
+        {/if}
+        {#if status === "tracking"}
+        <div class="bg-[#00325F] text-white rounded-xl capitalize text-xs absolute right-2.5 top-4 px-3 py-1.5 font-medium">
+            in Progress
+        </div>
+        {/if}
+
+        {#if status === "cancle"}
+        <div class="bg-[#FF8888] text-white rounded-xl capitalize text-xs absolute right-2.5 top-4 px-3 py-1.5 font-medium">
+            cancle
+        </div>
+        {/if}
+
+        {#if status === "paid"}
+        <div class="bg-[#24ABE3] text-white rounded-xl capitalize text-xs absolute right-2.5 top-4 px-3 py-1.5 font-medium">
+            paid
+        </div>
+        {/if}
     </div>
     <div class="flex items-center gap-4 justify-between">
         <div class="flex flex-col gap-4">
