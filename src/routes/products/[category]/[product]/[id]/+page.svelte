@@ -1,81 +1,63 @@
 <script>
 	import Frw from "$lib/core/FRW.svelte";
     import Wrapper from "$lib/core/Wrapper.svelte";
+	import { dataProduct } from "$lib/data/index.ts";
 	import ProductCard from "$lib/shared/ProductCard.svelte";
-
-    const menu = [
-        {
-            name:"Mobile Phones",
-            items: ["Cell Phones","Batteries, Power Banks & Chargers","Bluetooth Headsets & Accessories","Cases & Covers","Cell Phone Accessories"]
-        },
-        {
-            name:"TV & Video",
-            items:["TV & Video"]
-        },
-        {
-            name:"Laptop & Tablets",
-            items:["Tablets","Microsoft Surface","Android Tablets","Windows Tablets","iPad","Genuine Tablet Accessories"]
-        },
-        {
-            name:"Specialty Electronics",
-            items:["Media Players & TV Tuners","Pro Audio & Musical Instruments","Professional Video Devices","Alternative Energy","Electronic Components"]
-        },
-        {
-            name:"Portable Electronics",
-            items:["Portable Audio","Portable Video","Portable Accessories","Portable Gadgets","Portable Media Players"]
-        }
-    ]
+    export let data;
+    const formatter = new Intl.NumberFormat('en-US');
+    let count = 1;
+    let loading = false;
+    let addedCart = false;
 
 </script>
 <div class="flex flex-col gap-6 mt-10">
     <Wrapper>
      <div class="flex gap-10 md:flex-row flex-col md:items-end">
         <div class="bg-white flex-1">
-            <div class="flex flex-col gap-4 items-center w-full ">
+            <div class="flex flex-col gap-4 items-center w-full justify-center ">
                 <div class="bg-[#F7F7F7] rounded-lg w-full py-20 flex items-center justify-center">
                     <div class="md:w-[464px] md:h-[355.21px]">
-                        <img src="https://via.placeholder.com/464x355" alt="product" class="w-full h-full object-contain">
+                        <img src={data.images && data.images[0]} alt="product" class="w-full h-full object-contain">
                     </div>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
-                    <div class="bg-[#F7F7F7] py-4 px-4 md:w-auto w-[100px]  rounded-md flex items-center justify-center">
-                        <img src="https://via.placeholder.com/116x89" alt="product" class="w-full h-full object-contain">
-                    </div>
-                    <div class="bg-[#F7F7F7] py-4 px-4 md:w-auto w-[100px] rounded-md flex items-center justify-center">
-                        <img src="https://via.placeholder.com/116x89" alt="product" class="w-full h-full object-contain">
-                    </div>
-                    <div class="bg-[#F7F7F7] py-4 px-4 md:w-auto w-[100px] rounded-md flex items-center justify-center">
-                        <img src="https://via.placeholder.com/116x89" alt="product" class="w-full h-full object-contain">
-                    </div>
-                    <div class="bg-[#F7F7F7] py-4 px-4 md:w-auto w-[100px] rounded-md flex items-center justify-center">
-                        <img src="https://via.placeholder.com/116x89" alt="product" class="w-full h-full object-contain">
-                    </div>
-        
+                    {#each data.images || [] as item }
+                        <div class="bg-[#F7F7F7] py-4 px-4 md:w-auto w-[100px]  rounded-md flex items-center justify-center">
+                            <img src={item} alt="product" class="w-full h-full object-contain">
+                        </div>
+                    {/each}
                 </div>
             </div>
         </div>
         <div class="md:w-[450px]">
             <div class="flex flex-col gap-7">
-                <span class="text-[#CACACA] capitalize leading-none">smart tv</span>
-                <h1 class=" font-semibold text-xl leading-none">Aqua Smart TV HD 32"</h1>
+                <span class="text-[#CACACA] capitalize leading-none">{data.category?.name}</span>
+                <h1 class=" font-semibold text-xl leading-none">{data.title}</h1>
                 <span class="capitalize px-4 py-2 bg-[#F7F7F7] rounded-md w-fit text-xs">24  iNSTOCK</span>
                 <div class="flex items-center gap-4">
-                    <span class="font-semibold text-xl leading-none">1 189 000</span>
+                    <span class="font-semibold text-xl leading-none">{formatter.format(Number(`${data.price}00000`))}</span>
                     <Frw />
                 </div>
                 <div class="flex flex-col gap-2">
                     <span class="text-[#CACACA] capitalize leading-none font-medium">description</span>
-                    <p class="leading-5  capitalize">Enjin dai enjin celo horizen secret flow siacoin. Polkadot golem TRON vechain compound TRON ICON arweave stellar. Filecoin ox bancor hive terra.</p>
+                    <p class="leading-5  capitalize">{data.description}</p>
                 </div>
                 <div class="flex flex-wrap sm:flex-nowrap items-center w-full gap-10">
                     <div class="flex items-center bg-[#F7F7F7] rounded-md w-fit gap-6 px-8 py-3">
                         <div>
                             <span class="capitalize leading-none ">quantity</span>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <span class="text-lg">-</span>
-                            <span class="text-lg">1</span>
-                            <span class="text-lg">+</span>
+                        <div class="flex items-center gap-4 max-w-[50px] w-full">
+                            <button class="text-lg" on:click={(() =>{
+                                if(count <= 1) return;
+                                count = count - 1;
+                            })}>-</button>
+                            <span class="text-lg">{count}</span>
+                            <button class="text-lg"
+                            on:click={(() =>{
+                                count = count + 1;
+                            })}
+                            >+</button>
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
@@ -91,10 +73,36 @@
               </div>
               <div class="flex items-center justify-between">
                 <span class="capitalize font-light text-[#848484]">total</span>
-                <span class="font-normal text-xl">1 189 000 Rwf</span>
+                <span class="font-normal text-xl">{formatter.format(Number(`${data.price}00000`))} Rwf</span>
             </div>
-            <button class="bg-[#24ABE3] w-full text-white py-4 text-[15px] rounded-md capitalize">
-                Add to cart
+            <button
+             on:click={() =>{
+                loading = true;
+                setTimeout(() =>{
+                    loading = false;
+                    addedCart = true;
+                }, 2000);
+             }}
+             disabled={loading || addedCart}
+            class="{loading ? " bg-slate-300" : addedCart ? "bg-[#00325F]" :"bg-[#24ABE3]"} w-full text-white py-4 text-[15px] rounded-md capitalize">
+                {#if loading}
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="w-4 h-4 border-2 border-t-[4px] border-[#fff] rounded-full animate-spin"></div>
+                        <span>Adding to cart...</span>
+                    </div>
+                {:else}
+                    {#if addedCart}
+                        <div class="flex items-center justify-center gap-2">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Added to cart</span>
+                        </div>
+                    {:else}
+                        <span>Add to cart</span>
+                {/if}
+                {/if}
+
             </button>
             <div class="flex items-center gap-6">
                 <span class="text-[#848484] text-sm font-light">Tags</span>
@@ -188,8 +196,10 @@
             <div class="flex flex-col gap-4 mt-10">
                 <h1 class="text-xl capitalize font-semibold">related products</h1>
                 <div class="grid sm:grid-cols-2 min-[618px]:grid-cols-3 min-[812px]:grid-cols-4 min-[1021px]:grid-cols-5 gap-6">
-                    {#each new Array(5).fill("") as item }
-                        <ProductCard />
+                    {#each dataProduct.slice(0,5) as item }
+                    <a href="/products/{item.category.name}/{item.title}/{item.id}">
+                        <ProductCard  product={item}/>
+                    </a>
                     {/each}
                 </div>
             </div>

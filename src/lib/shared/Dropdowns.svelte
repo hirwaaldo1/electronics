@@ -18,7 +18,7 @@
 <div class="{isOpen ? "block" : " hidden"} ml-2">
     {#if options}
         {#each options as option}
-                <div class="py-1 text-inherit text-sm">{option}</div>
+                <a href="/products/{option}" class="py-1 text-inherit text-sm block">{option}</a>
         {/each}
     {/if}
 </div>

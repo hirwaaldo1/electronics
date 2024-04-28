@@ -1,6 +1,15 @@
-<script>
-	import Frw from "$lib/core/FRW.svelte";
+<script lang="ts">
+	import { dataProduct } from '$lib/data/index.ts';
 	import Wrapper from "$lib/core/Wrapper.svelte";
+
+    const formatter = new Intl.NumberFormat('en-US');
+    let carts =  dataProduct.slice(0,4).map((v)=>{
+        return {
+            ...v,
+            price: formatter.format(Number(`${v.price}00000`))
+        }
+    });
+    
 
 
 </script>
@@ -17,30 +26,31 @@
         <div class="flex gap-10 min-[941px]:flex-row flex-col">
             <div class="flex-1">
                 <div class="flex flex-col gap-4">
-                    {#each [1,2,3] as item }
+                    {#each carts as item }
                     <div class="rounded-xl bg-[#F7F7F7] px-8 py-4"> 
                         <div class="flex items-center gap-4">
                             <div class="w-full flex justify-between">
                                     <div class="flex items-center min-[770px]:gap-8 gap-2">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#474747" stroke-width="1.5"/>
-                                            <path d="M14.5 9.50002L9.50002 14.5M9.5 9.5L14.5 14.5" stroke="#474747" stroke-width="1.5" stroke-linecap="round"/>
-                                        </svg>
+                                        <button
+                                        on:click={() => carts = carts.filter(cart => cart.id !== item.id)}
+                                        >
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#474747" stroke-width="1.5"/>
+                                                <path d="M14.5 9.50002L9.50002 14.5M9.5 9.5L14.5 14.5" stroke="#474747" stroke-width="1.5" stroke-linecap="round"/>
+                                            </svg>
+                                        </button>
                                         <div class="flex items-center gap-4">
                                             <div class="bg-[#FFFFFF] w-[74px] h-[72px] rounded-md flex items-center justify-center px-4 py-4">
-                                                <img src="/image.png" alt="product" class="w-full h-full object-contain">
+                                                <img src={item.images[0]} alt="product" class="w-full h-full object-contain">
                                             </div>
-                                            <div class="flex flex-col gap-2">
-                                                <span class="sm:text-lg font-medium leading-none">Samsung Galaxy S24</span>
-                                                <span class="sm:text-lg font-medium leading-none">Ultra</span>
+                                            <div class="flex flex-col gap-0.5">
+                                                 <span class="sm:text-lg font-medium leading-none truncate w-[300px]">{item.title}</span>
+                                                <span class="sm:text-lg font-medium leading-none">{item.category.name}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4">
-                                        <div class=" items-center gap-2 min-[732px]:flex hidden">
-                                            <span class="font-light">80 0000</span>
-                                            <span class="font-medium">Rwf</span>
-                                        </div>
+
                                         <div class="bg-white rounded-md flex items-center gap-4 px-4 py-2">
                                             <div>
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +65,7 @@
                                             </div>
                                         </div>
                                         <div class="min-[732px]:flex hidden items-center gap-2">
-                                            <span class="font-light">80 0000</span>
+                                            <span class="font-light">{item.price}</span>
                                             <span class="font-medium">Rwf</span>
                                         </div>
                                     </div>
@@ -95,7 +105,9 @@
                     <h1 class=" font-semibold text-xl leading-none capitalize">cart totals</h1>
                     <div class="flex items-center justify-between">
                         <span class="capitalize font-light text-[#727272]">sub total</span>
-                        <span class="font-normal text-xl">80 0000 Rwf</span>
+                        <span class="font-normal text-xl">
+                            {formatter.format(Number(`${carts.reduce((acc, curr) => acc + Number(curr.price.replace(/\D/g, '')), 0) - 5000}`))} 
+                            Rwf</span>
                     </div>
                     <div class="flex flex-col gap-2">
                         <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -105,11 +117,11 @@
                   
                 <div class="flex items-center justify-between">
                     <span class="capitalize font-light text-black">total</span>
-                    <span class="font-normal text-xl">1 189 000 Rwf</span>
+                    <span class="font-normal text-xl">{formatter.format(Number(`${carts.reduce((acc, curr) => acc + Number(curr.price.replace(/\D/g, '')), 0)}`))} Rwf</span>
                 </div>
-                <button class="bg-[#24ABE3] w-full text-white py-4 text-[15px] rounded-md capitalize">
+                <a href="/checkout" class="bg-[#24ABE3] w-full text-center text-white py-4 text-[15px] rounded-md capitalize">
                     proceed to checkout
-                </button>
+                </a>
            
                 </div>
             </div>

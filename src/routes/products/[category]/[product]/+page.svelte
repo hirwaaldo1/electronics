@@ -1,6 +1,8 @@
 <script>
 	import Wrapper from "$lib/core/Wrapper.svelte";
+	import { dataProduct } from "$lib/data/index.ts";
 	import ProductCard from "$lib/shared/ProductCard.svelte";
+    export let data ;
 
     const menu = [
         {
@@ -30,10 +32,10 @@
     <Wrapper>
         <div class="flex flex-col gap-4">
             <div class="flex items-center gap-2">
-                <span class="text-[#9B9B9B] text-sm">Home</span>
+                <a href="/" class="text-[#9B9B9B] text-sm">Home</a>
                 <span class="text-sm">/</span>
-                <span class="text-[#9B9B9B] text-sm">Electronics</span>
-                <span class="text-sm">Mobile phones</span>
+                <a href="/products/Electronics/" class="text-[#9B9B9B] text-sm">Electronics</a>
+                <span class="text-sm">{data.name}</span>
             </div>
             <div class="flex gap-10">
                 <div class="w-[260px] sm:block hidden rounded-lg px-6 py-8 bg-[#F7F7F7] h-fit">
@@ -57,7 +59,7 @@
                 <div class="w-full flex-1 flex-col flex gap-2">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-2">
-                            <h1 class="text-black font-semibold sm:block hidden capitalize ">Mobile phones</h1>
+                            <h1 class="text-black font-semibold sm:block hidden capitalize ">{data.name}</h1>
                             <span class="bg-[#F9F9F9] rounded-lg text-sm px-4 py-1">18</span>
                         </div>
                         <div class="bg-[#F7F7F7] rounded-lg px-4 py-3 flex items-center gap-4">
@@ -70,8 +72,8 @@
                         </div>
                     </div>
                     <div class="grid sm:grid-cols-1 min-[618px]:grid-cols-2 min-[812px]:grid-cols-3 min-[1021px]:grid-cols-4 gap-6">
-                        {#each new Array(20).fill("") as item }
-                            <ProductCard />
+                        {#each dataProduct as item }
+                            <ProductCard product={item} />
                         {/each}
                     </div>
                     <div class="flex items-center justify-center w-full">

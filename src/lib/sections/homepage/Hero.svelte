@@ -1,6 +1,10 @@
 <script>
 	import Wrapper from "$lib/core/Wrapper.svelte";
 	import Dropdowns from "$lib/shared/Dropdowns.svelte";
+    import { Carousel } from 'flowbite-svelte';
+	import { quintOut } from "svelte/easing";
+	import { scale } from "svelte/transition";
+
 
     const menu = [
         {
@@ -53,11 +57,32 @@
         }
     ]
 
+    const gallerImages = [
+        {
+            alt: 'Tv',
+            src: '/image.png',
+            title: 'Tv'
+        },
+        {
+            alt: 'Tv two',
+            src: '/image-4.png',
+            title: 'Tv one'
+        },
+        {
+            alt: 'Tv',
+            src: '/image-2.png',
+            title: 'Tv two'
+        },
+    ]
+    // @ts-ignore
+
+    
+
 </script>
 <div>
     <Wrapper>
         <div class="flex gap-8">
-            <div class="min-[745px]:block hidden w-[261px] bg-[#00325F] rounded-xl px-4 py-4">
+            <div class="min-[745px]:block max-h-[570px] overflow-auto hidden w-[261px] bg-[#00325F] rounded-xl px-4 py-4">
                 <div class="px-2 py-2 bg-[#084175] flex items-center gap-2 rounded-md">
                     <div>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,22 +123,29 @@
                             <span class="text-[#626262] font-light">
                                 Ornare quis nec congue in ut mi risus aliquam v....
                             </span>
-                            <button class="px-9 py-3 mt-4 w-fit text-[16px] font-medium bg-[#24ABE3] text-white rounded-md capitalize">
+                            <a href="/hot" class="px-9 py-3 mt-4 w-fit text-[16px] font-medium bg-[#24ABE3] text-white rounded-md capitalize">
                                 shop now
-                            </button>
+                            </a>
                         </div>
                         <div class="relative">
-                            <img src="/image.png" alt="hero" class="w-full h-full z-10 object-cover rounded-lg" />
-                            <div class="z-50 absolute right-0 bottom-0">
-                                <div class="flex items-center gap-2 bg-white rounded-lg p-1">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.9167 15.8333L7.08335 10L12.9167 4.16667" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <span class="text-xs font-medium">1/4</span>   
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 5L15.5 12L8.5 19" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
+                            <div class="max-w-4xl">
+                                <Carousel imgClass="z-10 object-cover rounded-lg bg-red-900" 
+                                images={gallerImages} duration={2000}>
+                                    <div slot="slide" let:index>
+                                        <img  src={gallerImages[index]?.src} alt="hero" class="w-[376px] h-[251px] transition-all duration-300 z-10 object-contain rounded-lg" />
+                                        <div class="z-50 absolute right-0 bottom-0">
+                                            <div class="flex items-center gap-2 bg-white rounded-lg p-1">
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12.9167 15.8333L7.08335 10L12.9167 4.16667" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <span class="text-xs font-medium">{index+1}/{gallerImages.length}</span>   
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8.5 5L15.5 12L8.5 19" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Carousel>
                             </div>
                         </div>
                     </div>

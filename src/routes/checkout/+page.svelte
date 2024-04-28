@@ -1,6 +1,15 @@
 <script>
 	import Wrapper from '$lib/core/Wrapper.svelte';
+	import { dataProduct } from '$lib/data/index.ts';
     let process = 0;
+
+    const formatter = new Intl.NumberFormat('en-US');
+    let carts =  dataProduct.slice(0,4).map((v)=>{
+        return {
+            ...v,
+            price: formatter.format(Number(`${v.price}00000`))
+        }
+    });
 
 </script>
 
@@ -280,25 +289,24 @@
                 <div class="px-4 sm:px-8 py-6 pb-10 sm:pr-20 bg-[#F7F7F7] rounded-xl">
                     <h3 class="capitalize font-semibold">order summary</h3>
                     <div class="flex flex-col gap-8 mt-8">
-                        {#each [1,2,3,4] as item }
+                        {#each carts as item }
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-4">
                                 <div
                                     class="bg-[#FFFFFF] w-[74px] h-[72px] rounded-md flex items-center justify-center px-4 py-4"
                                 >
-                                    <img src="/image.png" alt="product" class="w-full h-full object-contain" />
+                                    <img src={item.images[0]} alt="product" class="w-full h-full object-contain" />
                                 </div>
                                 <div class="flex flex-col">
-                                    <span class="sm:text-lg font-medium leading-none"
-                                        >Samsung Galaxy S24</span
+                                    <span class="sm:text-lg font-medium leading-none truncate w-[250px]"
+                                        >{item.title}</span
                                     >
-                                    <span class="sm:text-lg font-medium leading-none"
-                                        >Ultra</span
-                                    >
+                                
+                                    <span class="sm:text-lg font-medium leading-none">{item.category.name}</span>
                                 </div>
                             </div>
                             <div>
-                                <span class="font-normal" data-svelte-h="svelte-1pa9c3l">80 0000 Frw</span>
+                                <span class="font-normal text-sm" data-svelte-h="svelte-1pa9c3l">{item.price} Frw</span>
                             </div>
                         </div>
                         {/each}

@@ -25,9 +25,9 @@
                                     
                             </div>
                         </div>
-                        <button class="px-9 py-3 mt-4 w-fit text-[16px] font-medium bg-[#F0B634] text-white rounded-md capitalize">
+                        <a href="/hot" class="px-9 py-3 mt-4 w-fit text-[16px] font-medium bg-[#F0B634] text-white rounded-md capitalize">
                             shop now
-                        </button>
+                        </a>
                     </div>
                     <div class="relative">
                         <img src="/image.png" alt="hero" class="w-full h-full z-10 object-cover rounded-lg" />

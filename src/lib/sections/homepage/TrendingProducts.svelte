@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
 	import ProductCard from './../../shared/ProductCard.svelte';
 	import Wrapper from "$lib/core/Wrapper.svelte";
+	import { dataProduct } from '$lib/data/index.ts';
+    const STATUS:["hot","new","normal"] = ["hot","new","normal"];
+    let activeOne = 0 ;
 
 </script>
 <div class="mt-10">
@@ -8,15 +11,44 @@
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-black font-medium text-lg sm:block hidden">Trending Products</h1>
             <div class="flex items-center gap-8">
-                {#each ["all","new arrivals","best sellers","most popular"] as item, i }
-                    <button class="font-medium capitalize {i === 0 && "text-[#24ABE3]"}">{item}</button>
+                {#each ["all","new arrivals","best sellers"] as item, i }
+                    <button class="font-medium capitalize {activeOne === i && "text-[#24ABE3]"}"
+                    on:click={(()=>{
+                        activeOne = i;
+                    })}
+                    >{item}</button>
                 {/each}
             </div>
         </div>
         <div class="grid sm:grid-cols-2 min-[618px]:grid-cols-3 min-[812px]:grid-cols-4 min-[1021px]:grid-cols-5 gap-6">
-            {#each new Array(10).fill("") as item }
-                <ProductCard />
+           {#if activeOne === 0 }     
+            {#each dataProduct as item }
+                <!-- svelte-ignore a11y-missing-attribute -->
+                <a href="/products/{item.category.name}/{item.title}/{item.id}">
+                    <ProductCard product={item} status={STATUS[Math.floor(Math.random() * 3)] || "normal"} />
+                </a>
             {/each}
+           {/if}
+
+           {#if activeOne === 1 }     
+            {#each dataProduct.slice(5,10) as item }
+                <!-- svelte-ignore a11y-missing-attribute -->
+                <a href="/products/{item.category.name}/{item.title}/{item.id}">
+                    <ProductCard product={item} status={"new"} />
+                </a>
+            {/each}
+           {/if}
+           {#if activeOne === 2 }     
+           {#each dataProduct.slice(0,5) as item }
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a href="/products/{item.category.name}/{item.title}/{item.id}">
+                   <ProductCard product={item} status={"hot"} />
+               </a>
+           {/each}
+          {/if}
+
+           
+           
         </div>
         <div class="bg-[#00325F] flex-wrap gap-5 rounded-md flex items-center justify-between mt-10 px-10 py-6">
             <div class="flex items-center gap-4">

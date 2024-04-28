@@ -22,7 +22,7 @@
                 <span class="text-xl font-semibold capitalize">hot deals</span>
             </div>
             <div class="grid sm:grid-cols-2  gap-8 mt-4">
-                <div class="rounded-xl px-6 py-6 bg-white flex gap-10 items-center">
+                <a href="/products/type/type/sds" class="rounded-xl px-6 py-6 bg-white flex gap-10 items-center">
                     <div class="w-[180px] rounded-xl min-[522px]:flex hidden bg-[#F7F7F7] items-center justify-center h-full">
                         <div class="w-[94.94px] h-full">
                             <img src="/image3.3.png" alt="deal" class=" object-contain w-full h-full" />
@@ -33,9 +33,9 @@
                         <div class="flex flex-col gap-2">
                             <span class="text-lg font-medium">Samsung Galaxy S24 Ultra </span>
                             <div class="flex items-center gap-2">
-                                <span class="text-[#ED1D24]">2 013 008</span>
+                                <span class="text-[#ED1D24]">2,013,008</span>
                                 <FRW />
-                                <span class="text-[#C7C7C7] line-through">2 013 008</span>
+                                <span class="text-[#C7C7C7] line-through">2,013,008</span>
                                 <FRW />
                             </div>
                             <div class="flex flex-col gap-2">
@@ -69,21 +69,21 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="rounded-xl px-6 py-6 bg-white flex gap-10 items-center">
+                </a>
+                <a href="/products/type/type/sds" class="rounded-xl px-6 py-6 bg-white flex gap-10 items-center">
                     <div class="w-[180px] rounded-xl min-[522px]:flex hidden bg-[#F7F7F7] flex items-center justify-center h-full">
                         <div class="w-[94.94px] h-full">
-                            <img src="/image3.3.png" alt="deal" class=" object-contain w-full h-full" />
+                            <img src='/image-4.png' alt="deal" class=" object-contain w-full h-full" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1">
-                        <span class="capitalize text-[#BABABA] text-sm">mobile phones</span>
+                        <span class="capitalize text-[#BABABA] text-sm">Smart Match</span>
                         <div class="flex flex-col gap-2">
-                            <span class="text-lg font-medium">Samsung Galaxy S24 Ultra </span>
+                            <span class="text-lg font-medium"> Apple Watch </span>
                             <div class="flex items-center gap-2">
-                                <span class="text-[#ED1D24]">2 013 008</span>
+                                <span class="text-[#ED1D24]">2,013,008</span>
                                 <FRW />
-                                <span class="text-[#C7C7C7] line-through">2 013 008</span>
+                                <span class="text-[#C7C7C7] line-through">2,013,008</span>
                                 <FRW />
                             </div>
                             <div class="flex flex-col gap-2">
@@ -117,11 +117,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="flex items-end justify-end">
                 <div class="flex items-center gap-2 mt-6">
-                    <span class="text-[#24ABE3] font-medium capitalize text-[15px]">see  all  deals</span>
+                    <a href="/hot" class="text-[#24ABE3] font-medium capitalize text-[15px]">see  all  deals</a>
                     <div>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.4" d="M19.75 11.7257L4.75 11.7257" stroke="#24ABE3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

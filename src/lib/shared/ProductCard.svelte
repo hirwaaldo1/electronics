@@ -1,12 +1,16 @@
 <script lang="ts">
+	import { dataProduct } from '$lib/data/index.ts';
 	import FRW from './../core/FRW.svelte';
-    export let status: "normal" | "hot" | "tracking"| "cancle" | 'paid' | undefined = 'normal';
+    export let status: "normal" | "hot" | "tracking"| "cancle" | 'paid' | "new" | undefined = 'normal';
+    export let product = dataProduct[0];
+    const formatter = new Intl.NumberFormat('en-US');
+
 </script>
 
 <div class="flex flex-col gap-2">
     <div class="w-full h-[237px] relative rounded-xl flex  bg-[#F7F7F7] items-center justify-center">
         <div class="w-[125px] h-full">
-            <img src="/image3.3.png" alt="deal" class=" object-contain w-full h-full" />
+            <img src={product.images[1]} alt="deal" class=" object-contain w-full h-full" />
         </div>
         {#if status === "hot"}
         <div class="bg-[#FF8888] text-white rounded-xl capitalize text-xs absolute right-2.5 top-4 px-3 py-1.5 font-medium">
@@ -30,15 +34,21 @@
             paid
         </div>
         {/if}
+
+        {#if status === "new"}
+        <div class="bg-[#24ABE3] text-white rounded-xl capitalize text-xs absolute right-2.5 top-4 px-3 py-1.5 font-medium">
+            new
+        </div>
+        {/if} 
     </div>
     <div class="flex items-center gap-4 justify-between">
         <div class="flex flex-col gap-4">
             <div  class="flex flex-col gap-2">
-                <span class="text-[#9E9E9E] capitalize font-light leading-none text-sm">mobile phones</span>
-                <span class="leading-none font-medium">PlayStation 5</span>
+                <span class="text-[#9E9E9E] capitalize font-light leading-none text-sm">{product.category.name}</span>
+                <span class="leading-none font-medium line-clamp-2 pb-0.5 capitalize">{product.title}</span>
             </div>
             <div class="flex items-center gap-2">
-                <span>3 013 008</span>
+                <span>{formatter.format(Number(`${product.price}00000`))}</span>
                 <FRW />
             </div>
         </div>

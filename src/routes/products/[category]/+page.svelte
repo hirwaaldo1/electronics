@@ -1,6 +1,9 @@
 <script>
 	import Wrapper from "$lib/core/Wrapper.svelte";
+	import { dataProduct } from "$lib/data/index.ts";
 	import ProductCard from "$lib/shared/ProductCard.svelte";
+
+    export let data;
 
     const menu = [
         {
@@ -42,7 +45,7 @@
                                 <span class="text-sm font-semibold">{name}</span>
                                 <div class="flex items-start flex-col gap-1">
                                     {#each items as item }
-                                        <a href="/" class="text-[#4D4D4D] text-sm font-light">{item}</a>
+                                        <a href="/products/{item}" class="text-[#4D4D4D] text-sm font-light">{item}</a>
                                     {/each}
                                 </div>
                             </div>
@@ -51,47 +54,48 @@
                     </div>
                 </div>
                 <div class="w-full flex-1 flex-col flex gap-2">
+                    <h1 class="text-black font-medium sm:block hidden">Types related to <u class="uppercase no-underline">{data.type}</u></h1>
                     <div class="sm:grid hidden sm:grid-cols-2 min-[855px]:grid-cols-3  gap-4">
                         <div class="flex items-center w-full bg-[#F7F7F7] rounded-[8px] justify-center py-4 h-[103px]">
-                            <div class="flex gap-6 items-center">
+                            <a href="/products/Electronics/Mobile Phones" class="flex gap-6 items-center">
                                 <img src="/image3.3.png" class="w-[43px] h-[51px] object-contain" alt="" />
                                 <span class="text-black font-normal capitalize text-sm">Mobile Phones</span>
-                            </div>
+                            </a>
                         </div>
                         <div class="flex items-center w-full bg-[#F7F7F7] rounded-[8px] justify-center py-4 h-[103px]">
-                            <div class="flex gap-6 items-center">
-                                <img src="/image3.3.png" class="w-[43px] h-[51px] object-contain" alt="" />
-                                <span class="text-black font-normal capitalize text-sm">Mobile Phones</span>
-                            </div>
+                            <a href="/products/Electronics/laptops" class="flex gap-6 items-center">
+                                <img src="/image-5.png" class="w-[43px] h-[51px] object-contain" alt="" />
+                                <span class="text-black font-normal capitalize text-sm">laptops</span>
+                            </a>
                         </div>
                         <div class="flex items-center w-full bg-[#F7F7F7] rounded-[8px] justify-center py-4 h-[103px]">
-                            <div class="flex gap-6 items-center">
+                            <a href="/products/Electronics/Specialty Electronics" class="flex gap-6 items-center">
                                 <img src="/image3.3.png" class="w-[43px] h-[51px] object-contain" alt="" />
-                                <span class="text-black font-normal capitalize text-sm">Mobile Phones</span>
-                            </div>
+                                <span class="text-black font-normal capitalize text-sm">Specialty Electronics</span>
+                            </a>
                         </div>
                         <div class="flex items-center w-full bg-[#F7F7F7] rounded-[8px] justify-center py-4 h-[103px]">
-                            <div class="flex gap-6 items-center">
-                                <img src="/image3.3.png" class="w-[43px] h-[51px] object-contain" alt="" />
-                                <span class="text-black font-normal capitalize text-sm">Mobile Phones</span>
-                            </div>
+                            <a href="/products/Electronics/TV & Video" class="flex gap-6 items-center">
+                                <img src="/image-1-1.png" class="w-[70px] h-[70px] object-contain" alt="" />
+                                <span class="text-black font-normal capitalize text-sm">TV & Video</span>
+                            </a>
                         </div>
                         <div class="flex items-center w-full bg-[#F7F7F7] rounded-[8px] justify-center py-4 h-[103px]">
-                            <div class="flex gap-6 items-center">
-                                <img src="/image3.3.png" class="w-[43px] h-[51px] object-contain" alt="" />
-                                <span class="text-black font-normal capitalize text-sm">Mobile Phones</span>
-                            </div>
+                            <a href="/products/Tablets & laptops" class="flex gap-6 items-center">
+                                <img src="/image-1-1-1.png" class="w-[43px] h-[51px] object-contain" alt="" />
+                                <span class="text-black font-normal capitalize text-sm">Tablets & laptops</span>
+                            </a>
                         </div>
                         <div class="flex items-center w-full bg-[#F7F7F7] rounded-[8px] justify-center py-4 h-[103px]">
-                            <div class="flex gap-6 items-center">
-                                <img src="/image3.3.png" class="w-[43px] h-[51px] object-contain" alt="" />
-                                <span class="text-black font-normal capitalize text-sm">Mobile Phones</span>
-                            </div>
+                            <a href="/products/Electronics/Headphones" class="flex gap-6 items-center">
+                                <img src="/image-1-2-1.png" class="w-[43px] h-[51px] object-contain" alt="" />
+                                <span class="text-black font-normal capitalize text-sm">Headphones</span>
+                            </a>
                         </div>
                     </div>
                     <div class="flex items-center justify-between my-8">
-                        <h1 class="text-black font-medium sm:block hidden">ELECTRONICS FEATURED ITEMS</h1>
-                        <div class="flex items-center gap-4 text-[#F0B634]">
+                        <h1 class="text-black font-medium sm:block hidden uppercase">{data.type}</h1>
+                        <!-- <div class="flex items-center gap-4 text-[#F0B634]">
                             <span class="capitalize">see  all  products</span>
                             <span>
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,11 +103,13 @@
                                     <path d="M14.2002 5.7013L20.2502 11.7253L14.2002 17.7503" stroke="#F0B634" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="grid sm:grid-cols-1 min-[618px]:grid-cols-2 min-[812px]:grid-cols-3 min-[1021px]:grid-cols-4 gap-6">
-                        {#each new Array(20).fill("") as item }
-                            <ProductCard />
+                        {#each dataProduct as item }
+                        <a href="/products/{item.category.name}/{item.title}/{item.id}">
+                            <ProductCard product={item} />
+                        </a>
                         {/each}
                     </div>
                     <div class="flex items-center justify-center w-full">

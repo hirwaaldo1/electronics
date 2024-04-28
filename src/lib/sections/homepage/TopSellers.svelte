@@ -18,9 +18,9 @@
                             </svg>
                         </div>
                     </div>
-                    <button class="px-12 py-3 w-fit text-[16px] font-light bg-[#24ABE3] text-white rounded-md capitalize">
+                    <a href="/hot" class="px-12 py-3 w-fit text-[16px] font-light bg-[#24ABE3] text-white rounded-md capitalize">
                         shop now
-                    </button>
+                    </a>
                 </div>
                 <img src="/image3.3.png" alt="hero" class="w-full mt-10 px-10 object-cover relative top-6"/>
             </div>
@@ -40,9 +40,9 @@
                             </svg>
                         </div>
                     </div>
-                    <button class="px-12 py-3 w-fit text-[16px] font-light bg-[#24ABE3] text-white rounded-md capitalize">
+                    <a href="/hot"  class="px-12 py-3 w-fit text-[16px] font-light bg-[#24ABE3] text-white rounded-md capitalize">
                         shop now
-                    </button>
+                    </a>
                 </div>
                 <div />
             </div>
@@ -60,9 +60,9 @@
                                 
                         </div>
                     </div>
-                    <button class="px-12 py-3 w-fit text-[16px] font-light bg-[#24ABE3] text-white rounded-md capitalize">
+                    <a href="/hot"  class="px-12 py-3 w-fit text-[16px] font-light bg-[#24ABE3] text-white rounded-md capitalize">
                         shop now
-                    </button>
+                    </a>
                 </div>
                 <img src="/image3.3.png" alt="hero" class="w-full mt-10 px-10 object-cover relative top-6"/>
             </div>
