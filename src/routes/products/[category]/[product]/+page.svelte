@@ -73,7 +73,9 @@
                     </div>
                     <div class="grid sm:grid-cols-1 min-[618px]:grid-cols-2 min-[812px]:grid-cols-3 min-[1021px]:grid-cols-4 gap-6">
                         {#each dataProduct as item }
+                        <a href="/products/{item.category.name}/{item.title}/{item.id}">
                             <ProductCard product={item} />
+                        </a>
                         {/each}
                     </div>
                     <div class="flex items-center justify-center w-full">
